@@ -41,7 +41,7 @@
     <div class=" w-full h-[70%] flex items-center justify-center">
         <Card.Root class=' w-[85%] aspect-video border-none '>
             <Card.Content class=' w-full h-full p-0'>
-                 <iframe class=" w-full h-full" src={`http://www.youtube.com/embed/${presentVideoKey}?enablejsapi=1&origin=http://example.com`}  title="videos relating to this movie">
+                 <iframe class=" w-full h-full" src={`https://www.youtube.com/embed/${presentVideoKey}?enablejsapi=1&origin=http://example.com`}  title="videos relating to this movie">
                 </iframe> 
             </Card.Content>
         

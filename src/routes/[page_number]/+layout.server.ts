@@ -1,5 +1,10 @@
 import type { movieResult } from '$lib/types';
-import { header } from '$lib';
+import {SECRET_TMDB_API_KEY} from '$env/static/private'
+const header = {
+    accept: 'application/json',
+		Authorization: `Bearer ${SECRET_TMDB_API_KEY}`
+}
+
 
 export async function load(){
     let trendingMovies ;

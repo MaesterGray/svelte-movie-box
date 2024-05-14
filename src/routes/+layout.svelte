@@ -11,24 +11,28 @@
 		let queryResultsReady = false
 		let searching = false
 
-import { header } from '$lib';
 
 async function search(){
-	let parsedResponse;
-	let response = await fetch(`https://api.themoviedb.org/3/search/multi?query=${query}&include_adult=true&language=en-US&page=1`,
-        {headers:header})
+
+searching=true 
+let searchrequest = await fetch('/search',
+{
+	method:'POST',
+	body:JSON.stringify(query),
+	headers:{
+		'content-type': 'application/json'
+	}
+})
 try {
-	parsedResponse = await response.json() as {results:{id:number, backdrop_path:string,media_type:'tv'|'movie',original_name:string}[]}
-	let stepOneArray = parsedResponse.results.filter((result)=> result.media_type ==='tv'||result.media_type==='movie')
-	processedSearchResultArray = stepOneArray.splice(0,3) as {id:number, backdrop_path:string,media_type:'tv'|'mvoie',original_name:string,original_title:string}[]
-	queryResultsReady = true
-	searching=false
+	let searchResponse = await searchrequest.json()
+	processedSearchResultArray = searchResponse.processedSearchResultArray
+		queryResultsReady = true
+		searching=false
 } catch (error) {
-	console.log(error)
-	errorHasOccured=true
+		errorHasOccured=true
 	searching = false
 }
-}
+ }
 $:if(query===''){
 	processedSearchResultArray=[]
 	queryResultsReady=false
@@ -44,7 +48,7 @@ $:if(query===''){
 	<div class=" flex flex-col space-y-3 rounded-md relative w-[60%] h-[5vh] sm:w-[50%]">
 		<div class=" w-full h-full flex">
 			<Input type='search' class=' w-[90%] h-full rounded-l-md outline-none' bind:value={query} placeholder='Search for movies and series'/>
-			<button class=" w-[5%] rounded-r-md h-full flex items-center justify-center" on:click={()=>{searching=true ;search()}}><Search color={'white'}/></button>
+			<button class=" w-[10%] rounded-r-md h-full flex items-center justify-center" on:click={search}><Search color={'white'}/></button>
 		</div>
 		{#if searching}
 		<Card.Root class=' z-50 w-[100%]'>
@@ -64,9 +68,11 @@ $:if(query===''){
 					<Card.Title class=' font-Poppins'>Search Results</Card.Title>
 				</Card.Header>
 					<Card.Content class=' flex flex-col space-y-2 p-1'>
+						{#if processedSearchResultArray.length !== 0 }
 						{#each processedSearchResultArray as items}
 							<SearchListItems on:onselect={()=>{query='';processedSearchResultArray=[]}} backdrop_path={items.backdrop_path} name={items.original_name?items.original_name:items.original_title} variant={items.media_type} id={items.id} mode='normal'/>
 						{/each}
+						{/if}
 					</Card.Content>
 			</Card.Root>
 		{/if}

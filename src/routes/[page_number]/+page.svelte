@@ -69,8 +69,9 @@ if (type==='next') {
 		<Pagination.Ellipsis />
 	  </Pagination.Item>
 	{:else}
-	  <Pagination.Item >
-		<a href={`/${page.value}`} data-sveltekit-noscroll data-sveltekit-preload-data="false">
+
+	  <Pagination.Item class={page.value=== currentPage?` text-black`:``}>
+		<a href={`/${page.value}`}  data-sveltekit-preload-data="false">
 			<Pagination.Link {page} isActive={currentPage == page.value}>
 		  {page.value}
 		</Pagination.Link>

@@ -71,7 +71,7 @@ if (type==='next') {
 	{:else}
 
 	  <Pagination.Item class={page.value=== currentPage?` text-black`:``}>
-		<a href={`/${page.value}`}  data-sveltekit-preload-data="false">
+		<a href={`/${page.value}`}  >
 			<Pagination.Link {page} isActive={currentPage == page.value}>
 		  {page.value}
 		</Pagination.Link>

@@ -1,7 +1,12 @@
-import { header } from "$lib";
 import type { movieResult } from '$lib/types';
 import type { CastOrCrew } from "$lib/types";
 import type { Video } from "$lib/types";
+import { SECRET_TMDB_API_KEY } from '$env/static/private';
+const header = {
+    accept: 'application/json',
+	Authorization: `Bearer ${SECRET_TMDB_API_KEY}`
+}
+
 export async function load({url,params}){
 let movieOrSerieRequest;
 let creditsRequest;

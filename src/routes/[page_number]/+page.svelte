@@ -8,7 +8,7 @@
 	import type { movieResult } from '$lib/types';
 	import { presentViewStore } from '$lib/stores/browserStore';
 	import { page } from '$app/stores';
-let movielist:movieResult[];	
+	let movielist:movieResult[];	
 	$:if ($presentViewStore === 'movies') {
 			movielist=data.movies as movieResult[]
 

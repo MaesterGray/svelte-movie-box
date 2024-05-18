@@ -26,7 +26,7 @@
 
 
             
-<Carousel.Root plugins={[Autoplay({delay:2500,jump:true,stopOnMouseEnter:true})]} class="w-full overflow-x-hidden z-0 outline-none ">
+<Carousel.Root plugins={[Autoplay({delay:2500,jump:true,stopOnMouseEnter:true,stopOnInteraction:false})]} class="w-full overflow-x-hidden z-0 outline-none ">
     <Carousel.Content >
         {#each trendingList as item (item.id)}
         <Carousel.Item>

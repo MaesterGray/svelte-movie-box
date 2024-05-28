@@ -61,7 +61,7 @@
             {#if $page.url.pathname.includes('movies')}
                 <div>{formatRuntime(data.movieOrSerie.runtime)}</div>
                 {:else}
-                <div class=" flex flex-col"> 
+                <div class=" flex flex-col lg:flex-row lg:space-x-2"> 
                     <span>{`Sesons : ${data.movieOrSerie.number_of_seasons}`}</span>
                     <span>{`No. of Episodes : ${data.movieOrSerie.number_of_episodes}`}</span>
                 </div>
@@ -100,16 +100,16 @@
                     <h1>Cast</h1>
                     <span class=" w-full overflow-x-scroll flex flex-col">
                         
-                        <span class=" flex ">
+                        <span class=" flex space-x-2">
                             {#each data.cast as cast (cast.original_name)}
                             <Avatar  original_name={cast.original_name} profile_path={cast.profile_path} character={cast.character} />
                             {/each}
                         </span>
                     </span>
-
+                    
+                    <h1>Producers</h1>
                     <span class=" overflow-x-scroll  flex flex-col w-full space-y-3">
-                        <h1>Producers</h1>
-                        <span class=" flex  ">
+                        <span class=" flex  space-x-2">
                             {#each data.crew as crew (crew.original_name)}
                             <Avatar original_name={crew.original_name} profile_path={crew.profile_path} />
                             {/each}

@@ -55,11 +55,7 @@ $:if(query===''){
 			<Card.Header class=' p-2'>
 				<Card.Title class=' font-Poppins'>Searching...</Card.Title>
 			</Card.Header>
-				<Card.Content class=' flex flex-col space-y-2 p-1'>
-					{#each Array(3) as placeholders}
-						<SearchListItems mode='placeholder'/>
-					{/each}
-				</Card.Content>
+				
 		</Card.Root>
 		{/if}
 		{#if queryResultsReady && searching===false && query!==''}
@@ -70,7 +66,7 @@ $:if(query===''){
 					<Card.Content class=' flex flex-col space-y-2 p-1'>
 						{#if processedSearchResultArray.length !== 0 }
 						{#each processedSearchResultArray as items}
-							<SearchListItems on:onselect={()=>{query='';processedSearchResultArray=[]}} backdrop_path={items.backdrop_path} name={items.original_name?items.original_name:items.original_title} variant={items.media_type} id={items.id} mode='normal'/>
+							<SearchListItems on:onselect={()=>{query='';processedSearchResultArray=[]}} backdrop_path={items.backdrop_path} name={items.original_name?items.original_name:items.original_title} variant={items.media_type} id={items.id} />
 						{/each}
 						{/if}
 					</Card.Content>

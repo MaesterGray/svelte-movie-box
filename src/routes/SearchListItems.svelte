@@ -6,7 +6,6 @@
     export let name =''
     export let variant = 'movie'
     export let id =1
-    export let mode:'normal'|'placeholder'|'failed'
     import { createEventDispatcher } from 'svelte';
 
 const dispatch = createEventDispatcher();
@@ -18,7 +17,6 @@ function closeSearch(){
 }
 </script>
 
-{#if mode==='normal'}
 <div class=" flex  hover:cursor-pointer " on:click={closeSearch}>
     <div class=" w-[20%] h-[15%] flex-shrink-0">
         <img class=" object-fill w-full h-full rounded-md" src={`${imageBase}${backdrop_path}`} alt="">
@@ -31,5 +29,4 @@ function closeSearch(){
     </div>
 </div>
 
-{/if}
      
